@@ -10,7 +10,7 @@ class ClientController extends Controller
     /**
      * @throws GuzzleException
      */
-    public function getAll()
+    public function getAll(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $client = new Client(
             [
