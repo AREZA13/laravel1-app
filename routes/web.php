@@ -22,4 +22,5 @@ Route::get('/login', function () {
     return view('welcome');
 });
 
-Route::get('/user', [\App\Http\Controllers\ClientController::class, 'getAll']);
+Route::get('/client', [\App\Http\Controllers\ClientController::class, 'getAll'])->name('client');
+Route::get('/client/{clientId}', [\App\Http\Controllers\PetController::class, 'getPetsByClientId'])->name('clientPetList');
