@@ -23,3 +23,4 @@ Route::get('/registration', function () {
 
 Route::get('/client', [\App\Http\Controllers\ClientController::class, 'getAll'])->name('client');
 Route::get('/client/{clientId}', [\App\Http\Controllers\PetController::class, 'getPetsByClientId'])->name('clientPetList');
+Route::post('/registration', [\App\Http\Controllers\UserController::class, 'storeUserRegistration'])->name('storeform');

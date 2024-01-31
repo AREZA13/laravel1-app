@@ -3,12 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Doctrine\DBAL\Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
-
 
 
 /**
@@ -74,4 +73,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * @throws Exception
+     */
+    public static function createFromRegisterForm(\App\Http\Requests\StoreUserRegisterRequest $request): bool
+    {
+        $userWithSameEmail = User::whereEmail($request['email'])->first();
+        if ($userWithSameEmail) {
+            throw new Exception('User already exists');
+        }
+        $user = new User();
+        $user->name = 1;
+        $user->password = $request['password'];
+        $user->email = $request['email'];
+        return $user->save();
+    }
 }
