@@ -28,7 +28,7 @@ class Pet
         public ?string   $edit_date,
         public ?PetType  $type,
         public ?PetBreed $breed,
-        public ?Client $owner,
+        public ?Client   $owner,
     )
     {
     }
