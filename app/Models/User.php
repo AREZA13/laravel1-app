@@ -84,7 +84,6 @@ class User extends Authenticatable
             throw new Exception('User already exists');
         }
         $user = new User();
-        $user->name = 1;
         $user->password = $request['password'];
         $user->email = $request['email'];
         return $user->save();
