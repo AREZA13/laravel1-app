@@ -7,8 +7,14 @@
     <title>@yield('title')</title>
 </head>
 <body>
-
+@if ($errors->any())
+    <div class="p-4 mb-0 text-sm text-red-800 text-center font-medium bg-red-50 dark:bg-gray-900 dark:text-red-400"
+         role="alert">
+        @foreach ($errors->all() as $error)
+            {{ 'D`oh!!!' . $error }}
+        @endforeach
+    </div>
+@endif
 @yield('content')
-
 </body>
 </html>

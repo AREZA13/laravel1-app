@@ -29,8 +29,9 @@ class StoreUserRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'password' => 'required|max:255',
+            'password' => 'required|max:255|min:5|required_with:confirm-password|same:confirm-password',
             'email' => 'required',
+            'confirm-password' => 'required'
         ];
     }
 }
