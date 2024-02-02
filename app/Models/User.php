@@ -77,15 +77,22 @@ class User extends Authenticatable
     /**
      * @throws Exception
      */
-    public static function createFromRegisterForm(\App\Http\Requests\StoreUserRegisterRequest $request): bool
+    public static function createFromRegisterForm(\App\Http\Requests\StoreUserRegisterRequest $request): User
     {
         $userWithSameEmail = User::whereEmail($request['email'])->first();
+
         if ($userWithSameEmail) {
             throw new Exception('User already exists');
         }
+
         $user = new User();
         $user->password = $request['password'];
         $user->email = $request['email'];
-        return $user->save();
+
+        if (!$user->save()) {
+            throw new Exception("User somehow didn't created");
+        }
+
+        return $user;
     }
 }
