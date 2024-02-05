@@ -20,6 +20,6 @@ class ClientController extends Controller
         foreach ($array as $clientArray) {
             $clientDTOs[] = \App\DTO\Client::fromArray($clientArray);
         }
-        return \view('client-list', ['clients' => $clientDTOs]);
+        return \view('client-list', ['clients' => array_slice($clientDTOs, 0, 50)]);
     }
 }
