@@ -25,6 +25,7 @@ use App\DTO\Pet\Pet;
     <th scope="col" class="px-6 py-3">type picture</th>
     <th scope="col" class="px-6 py-3">type type</th>
     <th scope="col" class="px-6 py-3">breed</th>
+    <th scope="col" class="px-6 py-3">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -48,7 +49,25 @@ use App\DTO\Pet\Pet;
             <th scope="row">{{ $pet->type->picture }}</th>
             <th scope="row">{{ $pet->type->type }}</th>
             <th scope="row">{{ $pet->breed->title }}</th>
+            <th scope="row" style="text-align: center">
+                <p><a href=""
+                      type="button"
+                      class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-5.5 text-center me-2 mb-2"
+                      id="pet-button">Edit</a></p>
+                <p><a href=""
+                      type="button"
+                      class="text-gray-900 bg-gradient-to-r from-red-200 via-red-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-5.5 text-center me-2 mb-2"
+                      id="pet-button">Delete</a></p>
+            </th>
         </tr>
     @endforeach
     </tbody>
 @endsection('content')
+@section('footer')
+    <div style="text-align: center">
+        <a href=""
+           type="button"
+           class="text-gray-900 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-5.5 text-center me-2 mb-2"
+           id="pet-button">&#129437;&#129451; Add new pet </a>
+    </div>
+@endsection('footer')
