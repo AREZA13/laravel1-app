@@ -33,4 +33,19 @@ readonly class ApiRequest
         $array = json_decode($body, true);
         return $array['data'][$modalKeyInJSON];
     }
+
+    /**
+     * @throws GuzzleException
+     * @throws \Exception
+     */
+    public function deletePet(int $id): void
+    {
+        $response = $this->client->request('DELETE', "petDelete/$id");
+        $body = $response->getBody();
+        $array = json_decode($body, true);
+
+        if (!isset($array['success']) || $array['success'] === false) {
+            throw new \Exception($array['message']);
+        }
+    }
 }

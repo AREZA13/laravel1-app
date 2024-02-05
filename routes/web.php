@@ -33,3 +33,6 @@ Route::get('/searchByFIO', [\App\Http\Controllers\ClientController::class, 'sear
 Route::get('/client/{clientId}', [\App\Http\Controllers\PetController::class, 'getPetsByClientId'])
     ->middleware('auth.basic')
     ->name('clientPetList');
+Route::get('/petDelete/{petId}', [\App\Http\Controllers\PetController::class, 'deletePetWithButton'])
+    ->middleware('auth.basic')
+    ->name('deletePet');
