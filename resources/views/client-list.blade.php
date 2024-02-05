@@ -37,6 +37,12 @@ use App\DTO\Client;
     </th>
     </tr>
     </thead>
+    @if(!empty($searchInfoMessage))
+        <div class="p-0 mb-0 text-center text-sm text-yellow-800  bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300"
+             role="alert">
+            <span class="font-medium">{{$searchInfoMessage}}</span>
+        </div>
+    @endif
     <tbody>
     @foreach ($clients as $client)
         <tr>

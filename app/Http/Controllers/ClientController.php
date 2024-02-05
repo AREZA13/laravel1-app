@@ -23,8 +23,9 @@ class ClientController extends Controller
     public function searchClientsByFIOLim50(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $lastname = $request->input('lastname');
+        $searchInfoMessage = "These results were found using $lastname";
         $clientDTOs = $this->getClientDtosByRequest("client?limit=50&filter=[{'property':'last_name', 'value': '$lastname'}]");
-        return \view('client-list', ['clients' => $clientDTOs]);
+        return \view('client-list', ['clients' => $clientDTOs, 'searchInfoMessage' => $searchInfoMessage]);
     }
 
     /** @return Client[]
