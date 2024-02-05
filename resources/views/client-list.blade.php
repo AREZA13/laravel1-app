@@ -10,7 +10,7 @@ use App\DTO\Client;
     ID</th>
     <th scope="col" class="px-6 py-3" style="text-align: center">ФИО</th>
     <th scope="col" class="px-6 py-3" style="text-align: center">
-        <form class="flex items-center">
+        <form action="{{ route('searchByFIO') }}" method="GET" class="flex items-center">
             <label for="simple-search" class="sr-only">Search</label>
             <div class="relative w-full">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -20,9 +20,9 @@ use App\DTO\Client;
                               d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2"/>
                     </svg>
                 </div>
-                <input type="text" id="simple-search"
+                <input type="text" name="lastname"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-20.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="Search ФИО..." required>
+                       placeholder="Search by lastname..." required>
             </div>
             <button type="submit"
                     class="p-20.5 ms-2 text-sm font-medium text-white bg-lime-200 rounded-lg border border-gray-300 hover:bg-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:bg-lime-200 dark:hover:bg-lime-200 dark:focus:ring-lime-200">

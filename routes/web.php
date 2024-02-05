@@ -24,9 +24,12 @@ Route::get('/registration', function () {
 Route::post('/registration', [\App\Http\Controllers\UserController::class, 'storeUserRegistration'])->name('storeform');
 Route::post('/login', [\App\Http\Controllers\UserController::class, 'checkFromLoginForm'])->name('loginform');
 
-Route::get('/client', [\App\Http\Controllers\ClientController::class, 'getAll'])
+Route::get('/client', [\App\Http\Controllers\ClientController::class, 'getAllLimit50'])
     ->middleware('auth.basic')
     ->name('client');
+Route::get('/searchByFIO', [\App\Http\Controllers\ClientController::class, 'searchClientsByFIOLim50'])
+    ->middleware('auth.basic')
+    ->name('searchByFIO');
 Route::get('/client/{clientId}', [\App\Http\Controllers\PetController::class, 'getPetsByClientId'])
     ->middleware('auth.basic')
     ->name('clientPetList');
