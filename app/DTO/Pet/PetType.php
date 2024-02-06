@@ -1,7 +1,9 @@
 <?php
 
 namespace App\DTO\Pet;
-class PetType
+use App\DTO\DtoInterface;
+
+class PetType implements DtoInterface
 {
     public function __construct(
         public ?int    $id,

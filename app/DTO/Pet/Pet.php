@@ -3,8 +3,9 @@
 namespace App\DTO\Pet;
 
 use App\DTO\Client;
+use App\DTO\DtoInterface;
 
-class Pet
+class Pet implements DtoInterface
 {
     public function __construct(
         public ?int      $id,

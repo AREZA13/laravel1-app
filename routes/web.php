@@ -21,6 +21,10 @@ Route::get('/registration', function () {
     return view('registration-page');
 })->name('show-registration-page');
 
+Route::get('/add-new-pet', function () {
+    return view('add-new-pet');
+})->name('add-new-pet');
+
 Route::post('/registration', [\App\Http\Controllers\UserController::class, 'storeUserRegistration'])->name('storeform');
 Route::post('/login', [\App\Http\Controllers\UserController::class, 'checkFromLoginForm'])->name('loginform');
 
@@ -36,3 +40,8 @@ Route::get('/client/{clientId}', [\App\Http\Controllers\PetController::class, 'g
 Route::get('/petDelete/{petId}', [\App\Http\Controllers\PetController::class, 'deletePetWithButton'])
     ->middleware('auth.basic')
     ->name('deletePet');
+Route::get('/breeds/{petTypeId}', [\App\Http\Controllers\PetController::class, 'getAllBreeds'])
+    ->name('breeds');
+Route::get('/petType', [\App\Http\Controllers\PetController::class, 'getAllPetTypes'])
+//    ->middleware('auth.basic') #TODO try to uncomment and duplicate the same for getAllBreeds
+    ->name('petType');

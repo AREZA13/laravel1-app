@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\DtoInterface;
+use App\DTO\Pet\PetBreed;
+use App\DTO\Pet\PetType;
 use App\Service\ApiRequest;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Redirect;
@@ -35,5 +38,64 @@ class PetController extends Controller
         } catch (\Exception $exception) {
             return Redirect::back()->withErrors(['msg' => $exception->getMessage()]);
         }
+    }
+
+    /**
+     * @throws GuzzleException
+     */
+    public function getAllBreeds(int $petTypeId): \Illuminate\Http\JsonResponse
+    {
+        $array = ApiRequest::fromEnv()->getByUri(
+            url: "breed?filter=[{'property':'pet_type_id', 'value':'$petTypeId'}]",
+            modalKeyInJSON: 'breed'
+        );
+        $dtos = $this->getAsDtos($array, PetBreed::class);
+        $resultArray = $this->resultArray($dtos);
+        return response()->json($resultArray);
+    }
+
+    /**
+     * @throws GuzzleException
+     */
+    public function getAllPetTypes(): \Illuminate\Http\JsonResponse
+    {
+        $array = ApiRequest::fromEnv()->getByUri(
+            url: 'petType',
+            modalKeyInJSON: 'petType'
+        );
+        $dtos = $this->getAsDtos($array, PetType::class);
+        $resultArray = $this->resultArray($dtos);
+        return response()->json($resultArray);
+    }
+
+    /**
+     * @template T of DtoInterface
+     * @param class-string<T> $className
+     * @return T[]
+     */
+    private function getAsDtos(array $array, string $className): array
+    {
+        $dtos = [];
+
+        foreach ($array as $petArray) {
+            $dtos[] = $className::fromArray($petArray);
+        }
+
+        return $dtos;
+    }
+
+    /** @param PetBreed[]|PetType[] $dtos */
+    private function resultArray(array $dtos): array
+    {
+        $resultArray = [];
+
+        foreach ($dtos as $dto) {
+            $resultArray[] = [
+                'id' => $dto->id,
+                'title' => $dto->title,
+            ];
+        }
+
+        return $resultArray;
     }
 }
