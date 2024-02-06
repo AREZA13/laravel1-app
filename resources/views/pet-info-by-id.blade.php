@@ -43,12 +43,12 @@ use App\DTO\Pet\Pet;
             <th scope="row">{{ $pet->status }}</th>
             <th scope="row">{{ $pet->weight }}</th>
             <th scope="row">{{ $pet->edit_date }}</th>
-            <th scope="row">{{ $pet->owner->home_phone }}</th>
-            <th scope="row">{{ $pet->owner->email }}</th>
-            <th scope="row">{{ $pet->type->title }}</th>
-            <th scope="row">{{ $pet->type->picture }}</th>
-            <th scope="row">{{ $pet->type->type }}</th>
-            <th scope="row">{{ $pet->breed->title }}</th>
+            <th scope="row">{{ $pet->owner?->home_phone ?? "" }}</th>
+            <th scope="row">{{ $pet->owner?->email ?? "" }}</th>
+            <th scope="row">{{ $pet->type?->title ?? "" }}</th>
+            <th scope="row">{{ $pet->type?->picture ?? "" }}</th>
+            <th scope="row">{{ $pet->type?->type ?? "" }}</th>
+            <th scope="row">{{ $pet->breed?->title ?? "" }}</th>
             <th scope="row" style="text-align: center">
                 <p><a href=""
                       type="button"
