@@ -48,4 +48,19 @@ readonly class ApiRequest
             throw new \Exception($array['message']);
         }
     }
+
+    /**
+     * @throws GuzzleException
+     */
+    public function get(int $id): void
+    {
+        $response = $this->client->request('DELETE', "petDelete/$id");
+        $body = $response->getBody();
+        $array = json_decode($body, true);
+
+        if (!isset($array['success']) || $array['success'] === false) {
+            throw new \Exception($array['message']);
+        }
+    }
+
 }
