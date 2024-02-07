@@ -43,7 +43,7 @@ class PetController extends Controller
     /**
      * @throws GuzzleException
      */
-    public function getAllBreeds(int $petTypeId): \Illuminate\Http\JsonResponse
+    public function getBreedsByPetType(int $petTypeId): \Illuminate\Http\JsonResponse
     {
         $array = ApiRequest::fromEnv()->getByUri(
             url: "breed?filter=[{'property':'pet_type_id', 'value':'$petTypeId'}]",

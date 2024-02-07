@@ -40,8 +40,8 @@ Route::get('/client/{clientId}', [\App\Http\Controllers\PetController::class, 'g
 Route::get('/petDelete/{petId}', [\App\Http\Controllers\PetController::class, 'deletePetWithButton'])
     ->middleware('auth.basic')
     ->name('deletePet');
-Route::get('/breeds/{petTypeId}', [\App\Http\Controllers\PetController::class, 'getAllBreeds'])
-    ->name('breeds');
+Route::get('/breed/{petTypeId}', [\App\Http\Controllers\PetController::class, 'getBreedsByPetType'])
+    ->name('breedByPetType');
 Route::get('/petType', [\App\Http\Controllers\PetController::class, 'getAllPetTypes'])
 //    ->middleware('auth.basic') #TODO try to uncomment and duplicate the same for getAllBreeds
     ->name('petType');
