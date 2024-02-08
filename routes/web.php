@@ -23,7 +23,7 @@ Route::get('/registration', function () {
 
 Route::get('/view-new-pet-form/{ownerId}', [\App\Http\Controllers\PetController::class, 'viewNewPetForm'])
     ->name('view-new-pet-form');
-Route::post('/store-pet', [\App\Http\Controllers\PetController::class, 'storePetRequest'])->name('store-pet');
+Route::post('/pet', [\App\Http\Controllers\PetController::class, 'storeAddPetRequest'])->name('store-pet');
 
 Route::post('/registration', [\App\Http\Controllers\UserController::class, 'storeUserRegistration'])->name('storeform');
 Route::post('/login', [\App\Http\Controllers\UserController::class, 'checkFromLoginForm'])->name('loginform');
@@ -45,3 +45,13 @@ Route::get('/breed/{petTypeId}', [\App\Http\Controllers\PetController::class, 'g
 Route::get('/petType', [\App\Http\Controllers\PetController::class, 'getAllPetTypes'])
 //    ->middleware('auth.basic') #TODO try to uncomment and duplicate the same for getAllBreeds
     ->name('petType');
+
+Route::get('/pet/{petId}', [\App\Http\Controllers\PetController::class, 'storePutPetRequest'])
+    ->middleware('auth.basic')
+    ->name('putPet');
+
+Route::any('/view-edit-pet-form/{petId}', [\App\Http\Controllers\PetController::class, 'viewEditPetForm'])
+    ->name('view-edit-pet-form');
+
+
+

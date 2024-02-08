@@ -100,5 +100,4 @@ use App\DTO\Pet\Pet;
         {{--    Actions --}}
         document.addEventListener("DOMContentLoaded", fillPEtTypesIntoSelectOption);
 
-
     </script>

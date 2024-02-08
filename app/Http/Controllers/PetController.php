@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\DTO\DtoInterface;
+use App\DTO\Pet\Pet;
 use App\DTO\Pet\PetBreed;
 use App\DTO\Pet\PetType;
+use App\Http\Requests\StorePetPutRequest;
 use App\Http\Requests\StorePetRequest;
 use App\Service\ApiRequest;
 use GuzzleHttp\Exception\GuzzleException;
@@ -105,12 +107,40 @@ class PetController extends Controller
         return view('add-new-pet', ['ownerId' => $ownerId]);
     }
 
-    public function storePetRequest(StorePetRequest $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function storeAddPetRequest(StorePetRequest $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         try {
             $data = $request->validated();
-            $ownerId=$data['owner_id'];
+            $ownerId = $data['owner_id'];
             ApiRequest::fromEnv()->addNewPet(data: $data);
+            return redirect(route('clientPetList', ['clientId' => $ownerId]));
+        } catch (\Exception|GuzzleException $exception) {
+            return back()->withErrors([
+                'error' => $exception->getMessage(),
+            ])->withInput();
+        }
+    }
+
+    /**
+     * @throws GuzzleException
+     */
+    public function viewEditPetForm(int $petId): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    {
+
+        $array = ApiRequest::fromEnv()->getByUri(
+            "pet/$petId",
+            'pet'
+        );
+        $petDTO = Pet::fromArray($array);
+        return view('put-pet', ['pet' => $petDTO]);
+    }
+
+    public function storePutPetRequest(StorePetPutRequest $request, int $petId): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    {
+        try {
+            $data = $request->validated();
+            $ownerId = $data['owner_id'];
+            ApiRequest::fromEnv()->putPet(data: $data, petId: $petId);
             return redirect(route('clientPetList', ['clientId' => $ownerId]));
         } catch (\Exception|GuzzleException $exception) {
             return back()->withErrors([

@@ -64,4 +64,19 @@ readonly class ApiRequest
             throw new Exception($array['message']);
         }
     }
+
+    /**
+     * @throws GuzzleException
+     * @throws Exception
+     */
+    public function putPet(array $data, int $petId): void
+    {
+        $response = $this->client->request('PUT', "pet/$petId", ['json' => $data]);
+        $body = $response->getBody();
+        $array = json_decode($body, true);
+
+        if (!isset($array['success']) || $array['success'] === false) {
+            throw new Exception($array['message']);
+        }
+    }
 }
