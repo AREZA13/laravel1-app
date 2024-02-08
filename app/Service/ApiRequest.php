@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -36,31 +37,31 @@ readonly class ApiRequest
 
     /**
      * @throws GuzzleException
-     * @throws \Exception
+     * @throws Exception
      */
     public function deletePet(int $id): void
     {
-        $response = $this->client->request('DELETE', "petDelete/$id");
+        $response = $this->client->request('DELETE', "pet/$id");
         $body = $response->getBody();
         $array = json_decode($body, true);
 
         if (!isset($array['success']) || $array['success'] === false) {
-            throw new \Exception($array['message']);
+            throw new Exception($array['message']);
         }
     }
 
     /**
      * @throws GuzzleException
+     * @throws Exception
      */
-    public function get(int $id): void
+    public function addNewPet(array $data): void
     {
-        $response = $this->client->request('DELETE', "petDelete/$id");
+        $response = $this->client->request('POST', "pet/", ['json' => $data]);
         $body = $response->getBody();
         $array = json_decode($body, true);
 
         if (!isset($array['success']) || $array['success'] === false) {
-            throw new \Exception($array['message']);
+            throw new Exception($array['message']);
         }
     }
-
 }

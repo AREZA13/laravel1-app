@@ -21,9 +21,9 @@ Route::get('/registration', function () {
     return view('registration-page');
 })->name('show-registration-page');
 
-Route::get('/add-new-pet', function () {
-    return view('add-new-pet');
-})->name('add-new-pet');
+Route::get('/view-new-pet-form/{ownerId}', [\App\Http\Controllers\PetController::class, 'viewNewPetForm'])
+    ->name('view-new-pet-form');
+Route::post('/store-pet', [\App\Http\Controllers\PetController::class, 'storePetRequest'])->name('store-pet');
 
 Route::post('/registration', [\App\Http\Controllers\UserController::class, 'storeUserRegistration'])->name('storeform');
 Route::post('/login', [\App\Http\Controllers\UserController::class, 'checkFromLoginForm'])->name('loginform');

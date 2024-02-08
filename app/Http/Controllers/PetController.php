@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DTO\DtoInterface;
 use App\DTO\Pet\PetBreed;
 use App\DTO\Pet\PetType;
+use App\Http\Requests\StorePetRequest;
 use App\Service\ApiRequest;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Redirect;
@@ -97,5 +98,24 @@ class PetController extends Controller
         }
 
         return $resultArray;
+    }
+
+    public function viewNewPetForm(int $ownerId): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        return view('add-new-pet', ['ownerId' => $ownerId]);
+    }
+
+    public function storePetRequest(StorePetRequest $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    {
+        try {
+            $data = $request->validated();
+            $ownerId=$data['owner_id'];
+            ApiRequest::fromEnv()->addNewPet(data: $data);
+            return redirect(route('clientPetList', ['clientId' => $ownerId]));
+        } catch (\Exception|GuzzleException $exception) {
+            return back()->withErrors([
+                'error' => $exception->getMessage(),
+            ])->withInput();
+        }
     }
 }
