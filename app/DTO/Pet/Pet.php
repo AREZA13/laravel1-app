@@ -25,7 +25,7 @@ class Pet implements DtoInterface
         public ?string   $lab_number,
         public ?string   $status,
         public ?string   $picture,
-        public ?string   $weight,
+        public ?float   $weight,
         public ?string   $edit_date,
         public ?PetType  $type,
         public ?PetBreed $breed,

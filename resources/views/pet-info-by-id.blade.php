@@ -8,47 +8,39 @@ use App\DTO\Pet\Pet;
 @section('title', 'Pet info')
 @section('table-content')
     id</th>
-    <th scope="col" class="px-6 py-3">owner id</th>
-    <th scope="col" class="px-6 py-3">type id</th>
-    <th scope="col" class="px-6 py-3">name</th>
-    <th scope="col" class="px-6 py-3">sex</th>
-    <th scope="col" class="px-6 py-3">date register</th>
-    <th scope="col" class="px-6 py-3">birthday</th>
-    <th scope="col" class="px-6 py-3">breed id</th>
-    <th scope="col" class="px-6 py-3">color id</th>
-    <th scope="col" class="px-6 py-3">status</th>
-    <th scope="col" class="px-6 py-3">weight</th>
-    <th scope="col" class="px-6 py-3">edit date</th>
-    <th scope="col" class="px-6 py-3">owner home phone</th>
-    <th scope="col" class="px-6 py-3">owner email</th>
-    <th scope="col" class="px-6 py-3">type title</th>
-    <th scope="col" class="px-6 py-3">type picture</th>
-    <th scope="col" class="px-6 py-3">type type</th>
-    <th scope="col" class="px-6 py-3">breed</th>
-    <th scope="col" class="px-6 py-3">Action</th>
+    <th scope="col" class="px-6 py-3" style="text-align: center">owner id</th>
+    <th scope="col" class="px-6 py-3" style="text-align: center">name</th>
+    <th scope="col" class="px-6 py-3" style="text-align: center">sex</th>
+    <th scope="col" class="px-6 py-3" style="text-align: center">date register</th>
+    <th scope="col" class="px-6 py-3" style="text-align: center">birthday</th>
+    <th scope="col" class="px-6 py-3" style="text-align: center">status</th>
+    <th scope="col" class="px-6 py-3" style="text-align: center">weight</th>
+    <th scope="col" class="px-6 py-3" style="text-align: center">edit date</th>
+    <th scope="col" class="px-6 py-3" style="text-align: center">owner home phone</th>
+    <th scope="col" class="px-6 py-3" style="text-align: center">owner email</th>
+    <th scope="col" class="px-6 py-3" style="text-align: center">type title</th>
+    <th scope="col" class="px-6 py-3" style="text-align: center">type type</th>
+    <th scope="col" class="px-6 py-3" style="text-align: center">breed</th>
+    <th scope="col" class="px-6 py-3" style="text-align: center">Action</th>
     </tr>
     </thead>
     <tbody>
     @foreach ($pets as $pet)
         <tr>
-            <th scope="row">{{ $pet->id }}</th>
-            <th scope="row">{{ $pet->owner_id }}</th>
-            <th scope="row">{{ $pet->type_id }}</th>
-            <th scope="row">{{ $pet->alias }}</th>
-            <th scope="row">{{ $pet->sex }}</th>
-            <th scope="row">{{ $pet->date_register }}</th>
-            <th scope="row">{{ $pet->birthday }}</th>
-            <th scope="row">{{ $pet->breed_id }}</th>
-            <th scope="row">{{ $pet->color_id }}</th>
-            <th scope="row">{{ $pet->status }}</th>
-            <th scope="row">{{ $pet->weight }}</th>
-            <th scope="row">{{ $pet->edit_date }}</th>
-            <th scope="row">{{ $pet->owner?->home_phone ?? "" }}</th>
-            <th scope="row">{{ $pet->owner?->email ?? "" }}</th>
-            <th scope="row">{{ $pet->type?->title ?? "" }}</th>
-            <th scope="row">{{ $pet->type?->picture ?? "" }}</th>
-            <th scope="row">{{ $pet->type?->type ?? "" }}</th>
-            <th scope="row">{{ $pet->breed?->title ?? "" }}</th>
+            <th scope="row" style="text-align: center">{{ $pet->id }}</th>
+            <th scope="row" style="text-align: center">{{ $pet->owner_id }}</th>
+            <th scope="row" style="text-align: center">{{ $pet->alias }}</th>
+            <th scope="row" style="text-align: center">{{ $pet->sex }}</th>
+            <th scope="row" style="text-align: center">{{ $pet->date_register }}</th>
+            <th scope="row" style="text-align: center">{{ $pet->birthday }}</th>
+            <th scope="row" style="text-align: center">{{ $pet->status }}</th>
+            <th scope="row" style="text-align: center">{{ $pet->weight }}</th>
+            <th scope="row" style="text-align: center">{{ $pet->edit_date }}</th>
+            <th scope="row" style="text-align: center">{{ $pet->owner?->home_phone ?? "" }}</th>
+            <th scope="row" style="text-align: center">{{ $pet->owner?->email ?? "" }}</th>
+            <th scope="row" style="text-align: center">{{ $pet->type?->title ?? "" }}</th>
+            <th scope="row" style="text-align: center">{{ $pet->type?->type ?? "" }}</th>
+            <th scope="row" style="text-align: center">{{ $pet->breed?->title ?? "" }}</th>
             <th scope="row" style="text-align: center">
                 <p><a href="{{route('view-edit-pet-form', ['petId' => $pet->id],['breedId' => $pet->breed_id])}}"
                       type="button"

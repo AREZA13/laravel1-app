@@ -10,6 +10,7 @@ use App\Http\Requests\StorePetPutRequest;
 use App\Http\Requests\StorePetRequest;
 use App\Service\ApiRequest;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
 class PetController extends Controller
@@ -126,7 +127,6 @@ class PetController extends Controller
      */
     public function viewEditPetForm(int $petId): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-
         $array = ApiRequest::fromEnv()->getByUri(
             "pet/$petId",
             'pet'
@@ -139,6 +139,7 @@ class PetController extends Controller
     {
         try {
             $data = $request->validated();
+            Log::info('putPet' . json_encode($data, JSON_UNESCAPED_UNICODE));
             $ownerId = $data['owner_id'];
             ApiRequest::fromEnv()->putPet(data: $data, petId: $petId);
             return redirect(route('clientPetList', ['clientId' => $ownerId]));

@@ -27,9 +27,9 @@ class StorePetPutRequest extends FormRequest
             'owner_id' => 'required|int',
             'breed_id' => 'required|int',
             'type_id' => 'required|int',
-            'weight' => 'int|nullable',
+            'weight' => 'numeric|nullable',
             'sex' => 'max:50',
-            'birthday' => 'date'
+            'birthday' => 'date|nullable'
 
         ];
     }

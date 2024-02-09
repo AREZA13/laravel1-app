@@ -15,43 +15,46 @@ use App\DTO\Pet\Pet;
     <label for="alias" class="block mb-2 text-sm font-medium text-gray-900"></label>
     <input type="text" id="alias" name="alias" aria-describedby="helper-text-explanation"
            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-           placeholder="Alias" value="{{$pet->alias}}">
+           placeholder="Alias" value="{{$pet->alias}}"><br>
 
-    <label for="typeId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500">Select type</label>
+    <label for="typeId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500"
+           style="text-align: right">Select type</label>
     <select id="typeId"
             name="type_id"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ">
-    </select>
+    </select><br>
 
-    <label for="breedId" class="c text-sm font-medium text-gray-900 dark:text-gray-500">Select breed</label>
+    <label for="breedId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500"
+           style="text-align: right">Select breed</label>
     <select id="breedId"
             name="breed_id"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 
     >
-    </select>
-    <label for="weight" class="block mb-2 text-sm font-medium text-gray-900"></label>
-    <input type="text" id="weight" name="weight" aria-describedby="helper-text-explanation"
+    </select><br>
+    <label for="weight" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500"
+           style="text-align: right">Select weight</label>
+    <input type="number" id="weight" name="weight"
            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-           placeholder="Weight" value="">
-    <label for="sex" class="block mb-2 text-sm font-medium text-gray-900"></label>
-    <label for="sex" class="c text-sm font-medium text-gray-900 dark:text-gray-500">Select sex</label>
+           placeholder="Weight" step="0.1" min="0" max="10000" value="{{$pet->weight}}"><br>
+    <label for="sex" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500" style="text-align: right">Select
+        sex</label>
     <select id="sex"
             name="sex"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ">
+        <option>{{$pet->sex}}</option>
         <option>Male</option>
         <option>Female</option>
-        <option>Transgender</option>
-    </select>
-    <div style="text-align: center">
-        <label for="birthday" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500">birthday</label>
-        <input type="date" id="birthday" name="trip-start" value="2018-07-22" min="1992-01-13" max="2024-12-31"/>
-    </div>
-    <label for="ownerId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Owner Id</label>
+    </select><br>
+    <label for="birthday" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500"
+           style="text-align: right">Birthday</label>
+    <input type="date" id="birthday" name="birthday"
+           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+           placeholder="Alias" value="{{$pet->birthday}}" min="1992-01-13" max="2024-12-31">
     <input value="{{$pet->owner_id}}" id="ownerId" type="hidden" name="owner_id"
            aria-describedby="helper-text-explanation"
            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-           placeholder="name@flowbite.com">
+           placeholder="name@flowbite.com"><br><br>
     <div style="text-align: center">
         <button type="submit" style="text-align: center"
                 class="text-gray-900 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-5.5 text-center me-2 mb-2"
@@ -91,7 +94,6 @@ use App\DTO\Pet\Pet;
         }
         document.getElementById("typeId").innerHTML += row;
     }
-
 
     function insertIntoBreedTypeWithSelectedOldValue(breed) {
         let row;
@@ -138,6 +140,7 @@ use App\DTO\Pet\Pet;
             insertIntoBreedTypeWithSelectedOldValue(breed)
         });
     }
+
 
     // Actions
     document.getElementById("typeId").onclick = getBreedByTypeId;
