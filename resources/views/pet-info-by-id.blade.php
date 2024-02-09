@@ -42,14 +42,17 @@ use App\DTO\Pet\Pet;
             <th scope="row" style="text-align: center">{{ $pet->type?->type ?? "" }}</th>
             <th scope="row" style="text-align: center">{{ $pet->breed?->title ?? "" }}</th>
             <th scope="row" style="text-align: center">
-                <p><a href="{{route('view-edit-pet-form', ['petId' => $pet->id],['breedId' => $pet->breed_id])}}"
-                      type="button"
-                      class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-5.5 text-center me-2 mb-2"
-                      id="pet-button-edit">Edit</a></p>
-                <p><a href="{{route('deletePet', ['petId' => $pet->id])}}"
-                      type="button"
-                      class="text-gray-900 bg-gradient-to-r from-red-200 via-red-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-5.5 text-center me-2 mb-2"
-                      id="pet-button-delete">Delete</a></p>
+                <p>
+                    <a href="{{route('view-edit-pet-form', ['petId' => $pet->id],['breedId' => $pet->breed_id])}}"
+                       type="button"
+                       class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-5.5 text-center me-2 mb-2"
+                       id="pet-button-edit">Edit</a>
+                </p>
+                <button type="button"
+                        class="text-gray-900 bg-gradient-to-r from-red-200 via-red-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-5.5 text-center me-2 mb-2 pet-button-delete"
+                        onclick="deletePetRequest('{{ route('pet.destroy', $pet->id) }}')"
+                >Delete
+                </button>
             </th>
         </tr>
     @endforeach
@@ -63,3 +66,14 @@ use App\DTO\Pet\Pet;
            id="pet-button-add">&#129437;&#129451; Add new pet </a>
     </div>
 @endsection('footer')
+<script>
+    function deletePetRequest(url) {
+        console.log(url);
+        fetch(url, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    }
+</script>
