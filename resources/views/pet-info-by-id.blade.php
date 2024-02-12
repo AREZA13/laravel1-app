@@ -43,7 +43,7 @@ use App\DTO\Pet\Pet;
             <th scope="row" style="text-align: center">{{ $pet->breed?->title ?? "" }}</th>
             <th scope="row" style="text-align: center">
                 <p>
-                    <a href="{{route('view-edit-pet-form', ['petId' => $pet->id],['breedId' => $pet->breed_id])}}"
+                    <a href="{{route('pet.edit', ['pet' => $pet->id])}}"
                        type="button"
                        class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-5.5 text-center me-2 mb-2"
                        id="pet-button-edit">Edit</a>
@@ -63,7 +63,7 @@ use App\DTO\Pet\Pet;
 @endsection('content')
 @section('footer')
     <div style="text-align: center">
-        <a href="{{ route('view-new-pet-form', ['ownerId' => $clientId])}}"
+        <a href="{{ route('client.pet.create', ['client' => $clientId])}}"
            type="button"
            class="text-gray-900 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-5.5 text-center me-2 mb-2"
            id="pet-button-add">&#129437;&#129451; Add new pet </a>

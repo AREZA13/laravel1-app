@@ -5,7 +5,7 @@ namespace App\DTO\Pet;
 use App\DTO\Client;
 use App\DTO\DtoInterface;
 
-class Pet implements DtoInterface
+readonly class Pet implements DtoInterface
 {
     public function __construct(
         public ?int      $id,
@@ -25,7 +25,7 @@ class Pet implements DtoInterface
         public ?string   $lab_number,
         public ?string   $status,
         public ?string   $picture,
-        public ?float   $weight,
+        public ?float    $weight,
         public ?string   $edit_date,
         public ?PetType  $type,
         public ?PetBreed $breed,
