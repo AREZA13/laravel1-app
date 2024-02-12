@@ -23,7 +23,6 @@ class StorePetRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'owner_id' => 'required|int',
             'breed_id' => 'required|int',
             'type_id' => 'required|int',
             'alias' => 'required|max:50'

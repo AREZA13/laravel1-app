@@ -1,9 +1,10 @@
 <?php
 
 namespace App\DTO\Pet;
+
 use App\DTO\DtoInterface;
 
-class PetBreed implements DtoInterface
+readonly class PetBreed implements DtoInterface
 {
     public function __construct(
         public ?int    $id,

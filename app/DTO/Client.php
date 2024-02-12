@@ -1,7 +1,7 @@
 <?php
 
 namespace App\DTO;
-class Client implements DtoInterface
+readonly class Client implements DtoInterface
 {
     public function __construct(
         public ?int    $id,

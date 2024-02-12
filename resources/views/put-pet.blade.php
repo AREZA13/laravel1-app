@@ -7,7 +7,8 @@ use App\DTO\Pet\Pet;
 @extends('master')
 @section('title', 'Add pet')
 
-<form action="{{ route('putPet', ['petId' => $pet->id]) }}" method="get" class="max-w-sm mx-auto">
+<form id="formIdForPut" action="{{ route('pet.update', [$pet->id]) }}" method="get"
+      class="max-w-sm mx-auto"> {{-- #TODO redo --}}
     @csrf
     <p id="helper-text-explanation" class="mt-2 p-8 text-lg text-gray-500 dark:text-gray-500 font-large  "
        style="text-align: center">Add info for new pet.</p>
@@ -140,7 +141,6 @@ use App\DTO\Pet\Pet;
             insertIntoBreedTypeWithSelectedOldValue(breed)
         });
     }
-
 
     // Actions
     document.getElementById("typeId").onclick = getBreedByTypeId;

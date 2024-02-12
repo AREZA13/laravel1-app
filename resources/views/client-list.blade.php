@@ -11,6 +11,7 @@ use App\DTO\Client;
     <th scope="col" class="px-6 py-3" style="text-align: center">ФИО</th>
     <th scope="col" class="px-6 py-3" style="text-align: center">
         <form action="{{ route('searchByFIO') }}" method="GET" class="flex items-center">
+            @csrf
             <label for="simple-search" class="sr-only">Search</label>
             <div class="relative w-full">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -48,7 +49,7 @@ use App\DTO\Client;
         <tr>
             <th scope="row">{{ $client->id }}</th>
             <td style="text-align: center">{{ $client->getFullName()}}</td>
-            <td style="text-align: center"><a href="{{ route('clientPetList', ['clientId' => $client->id]) }}"
+            <td style="text-align: center"><a href="{{ route('client.pet.index', ['client' => $client->id]) }}"
                                               type="button"
                                               class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-3 py-5.5 text-center me-2 mb-2"
                                               id="pet-button">Pet</a></td>
