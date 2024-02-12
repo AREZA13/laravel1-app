@@ -7,6 +7,7 @@ use App\Service\ApiRequest;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
 
 class PetController extends Controller
 {
@@ -33,7 +34,6 @@ class PetController extends Controller
     {
         //
     }
-
 
 
     /**
@@ -65,11 +65,11 @@ class PetController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $petId): \Illuminate\Http\RedirectResponse
+    public function destroy(string $petId)
     {
         try {
             ApiRequest::fromEnv()->deletePet($petId);
-            return back();
+            return Response::json([]);
         } catch (\Exception|GuzzleException $exception) {
             return back()->withErrors([
                 'error' => $exception->getMessage(),

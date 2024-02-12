@@ -11,6 +11,7 @@ use App\DTO\Client;
     <th scope="col" class="px-6 py-3" style="text-align: center">ФИО</th>
     <th scope="col" class="px-6 py-3" style="text-align: center">
         <form action="{{ route('searchByFIO') }}" method="GET" class="flex items-center">
+            @csrf
             <label for="simple-search" class="sr-only">Search</label>
             <div class="relative w-full">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

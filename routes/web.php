@@ -48,5 +48,4 @@ Route::get('/petType', [\App\Http\Controllers\PetOldController::class, 'getAllPe
 Route::any('/view-edit-pet-form/{petId}', [\App\Http\Controllers\PetOldController::class, 'viewEditPetForm'])
     ->name('view-edit-pet-form');
 
-
 Route::resource('pet', PetController::class)->middleware('auth.basic')->except(['show']);
