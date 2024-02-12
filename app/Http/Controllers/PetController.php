@@ -29,7 +29,7 @@ class PetController extends Controller
         foreach ($array as $petArray) {
             $petDTOs[] = \App\DTO\Pet\Pet::fromArray($petArray);
         }
-        return \view('pet-info-by-id', ['pets' => $petDTOs, 'clientId' => $clientId]);
+        return \view('pet/list-by-client-id', ['pets' => $petDTOs, 'clientId' => $clientId]);
     }
 
     /**
@@ -38,7 +38,7 @@ class PetController extends Controller
 
     public function create(int $ownerId): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('add-new-pet-form', ['ownerId' => $ownerId]);
+        return view('pet/form-create', ['ownerId' => $ownerId]);
     }
 
     /**
@@ -73,7 +73,7 @@ class PetController extends Controller
             'pet'
         );
         $petDTO = Pet::fromArray($array);
-        return view('put-pet', ['pet' => $petDTO]);
+        return view('pet/form-edit', ['pet' => $petDTO]);
     }
 
     /**

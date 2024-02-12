@@ -14,19 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return redirect('login');
+});
+
 Route::get('/login', function () {
     return view('login-page');
 })->name('login');
+Route::post('/login', [\App\Http\Controllers\UserController::class, 'checkFromLoginForm'])
+    ->name('loginForm');
 
 Route::get('/registration', function () {
     return view('registration-page');
 })->name('show-registration-page');
-
 Route::post('/registration', [\App\Http\Controllers\UserController::class, 'storeUserRegistration'])
     ->name('storeForm');
-
-Route::post('/login', [\App\Http\Controllers\UserController::class, 'checkFromLoginForm'])
-    ->name('loginForm');
 
 Route::middleware(['auth.basic'])->group(function () {
     Route::get('/client', [\App\Http\Controllers\ClientController::class, 'getAllLimit50'])
